@@ -14,6 +14,12 @@ class CreateAdsTable extends Migration
     public function up()
     {
         //
+        Schema::create('ads', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer("user_id");
+            $table->string("name");
+            $table->timestamps();
+              });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateAdsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("ads");
     }
 }

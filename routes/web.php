@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',"HomeController@index");
+
+
+Route::get("save_user","HomeController@saveUser");
+Route::get("find_user","HomeController@find");
+Route::get("edit_user","HomeController@edit");

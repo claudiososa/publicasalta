@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace PublicaSalta;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PublicaSalta\Ad;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function ads()
+    {
+      return $this->hasMany(Ad::class);
+    }
 }
