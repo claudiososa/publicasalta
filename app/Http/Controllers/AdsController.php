@@ -5,7 +5,7 @@ namespace PublicaSalta\Http\Controllers;
 use Illuminate\Http\Request;
 use PublicaSalta\Ad;
 
-class HomeController extends Controller
+class AdsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,6 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $ads = Ad::with('user')->get();
-      //  return $ads;
-      //  dd($ads->get(1));
-        //$title="Título del anuncio";
-        return view("home",['ads'=>$ads]);
     }
 
     /**
@@ -52,6 +47,8 @@ class HomeController extends Controller
     public function show($id)
     {
         //
+        $ad = Ad::findOrFail($id);
+        return view ('ad',['ad'=>$ad]);
     }
 
     /**

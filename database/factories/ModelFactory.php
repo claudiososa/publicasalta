@@ -21,3 +21,11 @@ $factory->define(PublicaSalta\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->define(PublicaSalta\Ad::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(),
+    ];
+});

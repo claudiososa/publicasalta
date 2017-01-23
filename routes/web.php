@@ -12,6 +12,11 @@
 */
 
 Route::get('/',"HomeController@index");
+Route::get('ad/{id}',[
+    'uses' => 'AdsController@show',
+    'as' => 'ad_show_path'
+]
+);
 
 
 Route::get("save_user","HomeController@saveUser");
