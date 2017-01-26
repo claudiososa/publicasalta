@@ -29,3 +29,12 @@ $factory->define(PublicaSalta\Ad::class, function (Faker\Generator $faker) {
         'content' => $faker->paragraph(),
     ];
 });
+
+$factory->define(PublicaSalta\Category::class, function (Faker\Generator $faker) {
+    //static $password;
+
+    return [
+        'name' => $faker->name,
+        'detail' => $faker->sentence(),
+    ];
+});

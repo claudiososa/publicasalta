@@ -2,11 +2,14 @@
 
 @section("content")
 <h1>Lista de Anuncios</h1>
+<hr>
 @foreach ($ads as $ad)
-<h1>Título</h1>
-  <a href="{{route ('ad_show_path',$ad->id)}}">{{$ad->title}}</a>
-  
-  <h4>Fecha de Creación</h4>{{$ad->created_at}}
-  <h1>Creado por...</h1>{{$ad->user->name}}
+  {{$ad->title}}
+  <br>
+  {{$ad->content}}
+  <br>
+<h4> <a href="{{route ('ad_show_path',$ad->id)}}">{{$ad->title}}</a></h4>
+  <p>Fecha de Creación <b>{{$ad->created_at}}</b> Creado por... <b>{{$ad->user->name}}</b></p>
+  <hr>
 @endforeach
 @stop

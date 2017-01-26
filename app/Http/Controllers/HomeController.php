@@ -17,7 +17,7 @@ class HomeController extends Controller
         //
         $ads = Ad::with('user')->get();
       //  return $ads;
-      //  dd($ads->get(1));
+        //dd($ads->get(1));
         //$title="Título del anuncio";
         return view("home",['ads'=>$ads]);
     }

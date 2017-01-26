@@ -5,4 +5,5 @@
   <p>
     {{$ad->content}}
   </p>
+  <p><a href="/">Regresar</a></p>
 @stop
