@@ -17,12 +17,15 @@ class UsersTableSeeder extends Seeder
         //
           User::truncate();
           Ad::truncate();
-          Category::truncate();
+
+
+
 
           factory(PublicaSalta\User::class, 10)->create()->each(function ($user) {
-              $cat = factory(PublicaSalta\Category::class)->make();
+              //$cat = factory(PublicaSalta\Category::class)->make();
+
               $ad = factory(PublicaSalta\Ad::class)->make();
-              $user->ads()->save($ad,$cat);
+              $user->ads()->save($ad);
 
           });
     }

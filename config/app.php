@@ -1,4 +1,5 @@
 <?php
+use PublicaSalta\Providers\ViewComposerServiceProvider;
 
 return [
 
@@ -177,6 +178,7 @@ return [
         // PublicaSalta\Providers\BroadcastServiceProvider::class,
         PublicaSalta\Providers\EventServiceProvider::class,
         PublicaSalta\Providers\RouteServiceProvider::class,
+        PublicaSalta\Providers\ViewComposerServiceProvider::class,
 
     ],
 

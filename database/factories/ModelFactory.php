@@ -21,14 +21,6 @@ $factory->define(PublicaSalta\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
-$factory->define(PublicaSalta\Ad::class, function (Faker\Generator $faker) {
-    static $password;
-
-    return [
-        'title' => $faker->sentence(),
-        'content' => $faker->paragraph(),
-    ];
-});
 
 $factory->define(PublicaSalta\Category::class, function (Faker\Generator $faker) {
     //static $password;
@@ -36,5 +28,25 @@ $factory->define(PublicaSalta\Category::class, function (Faker\Generator $faker)
     return [
         'name' => $faker->name,
         'detail' => $faker->sentence(),
+    ];
+});
+
+$factory->define(PublicaSalta\SubCategory::class, function (Faker\Generator $faker) {
+    //static $password;
+
+    return [
+        'name' => $faker->name,
+        'detail' => $faker->sentence(),
+    ];
+});
+
+$factory->define(PublicaSalta\Ad::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'category_id'=>1,
+        'subcategory_id'=>1,
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(),
     ];
 });
