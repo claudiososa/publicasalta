@@ -8,7 +8,7 @@ use PublicaSalta\Category;
 class SubCategory extends Model
 {
     //
-    public function category()
+    public function subcategory()
     {
       return $this->belongsTo(Category::class);
     }

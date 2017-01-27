@@ -15,11 +15,16 @@ class HomeController extends Controller
     public function index()
     {
         //
+        //$ads = Ad::all();
         $ads = Ad::with('user')->get();
+        $anuncios = Ad::with("category")->get();
       //  return $ads;
-        //dd($ads->get(1));
+      //  dd($ads->all());
         //$title="Título del anuncio";
-        return view("home",['ads'=>$ads]);
+        return view("home",[
+          'ads'=>$ads,
+          "anuncios" => $anuncios,
+        ]);
     }
 
     /**

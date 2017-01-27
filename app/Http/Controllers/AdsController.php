@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use PublicaSalta\Ad;
+use PublicaSalta\Category;
 
 class AdsController extends Controller
 {
@@ -27,8 +28,28 @@ class AdsController extends Controller
     public function create()
     {
         //
-        return view ("ads.create");
+        $categories = Category::all();
+      //  return $ads;
+        //dd($categories);
+        //$title="Título del anuncio";
+        //return view("home",['ads'=>$ads]);
+        return view ("ads.create",["categories" => $categories]);
+        //  return view("home",['ads'=>$ads]);
     }
+
+    public function my_ads()
+    {
+        //
+        $user=Auth::user();
+        $my_ads = Ad::where("user_id",$user->id)->get();
+      //  return $ads;
+        //dd($ads);
+        //$title="Título del anuncio";
+        //return view("home",['ads'=>$ads]);
+        return view ("ads.myAds",["my_ads" => $my_ads]);
+        //  return view("home",['ads'=>$ads]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -54,6 +75,7 @@ class AdsController extends Controller
         $ad->title= $request->get("title");
         $ad->content= $request->get("content");
         $ad->user_id = Auth::id();
+        $ad->category_id = $request->get("category_id");
         $ad->save();
 
         return redirect()->route("ad_show_path",$ad->id);
@@ -81,7 +103,11 @@ class AdsController extends Controller
     public function edit($id)
     {
         $ad = Ad::findOrFail($id);
-        return view ("ads.edit",["ad"=>$ad]);
+        $categories = Category::all();
+        //$category_id = Category::get($ad->category_id);
+        return view ("ads.edit",[
+          "ad"=>$ad,
+          "categories" => $categories]);
     }
 
     /**
@@ -97,6 +123,7 @@ class AdsController extends Controller
         $ad->title= $request->get("title");
         $ad->content= $request->get("content");
         $ad->user_id = Auth::id();
+        $ad->category_id = $request->get("category_id");
         $ad->save();
         return redirect()->route("ad_show_path",$ad->id);
     }

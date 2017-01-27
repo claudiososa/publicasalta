@@ -22,6 +22,12 @@ Route::group(["middleware" => "auth"],function(){
   ]
   );
 
+  Route::get('ad/my',[
+      'uses' => 'AdsController@my_ads',
+      'as' => 'ad_my_path',
+  ]
+  );
+
   Route::post('ad/create',[
       'uses' => 'AdsController@store',
       'as' => 'ad_store_path',

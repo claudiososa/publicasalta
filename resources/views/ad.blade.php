@@ -5,5 +5,5 @@
   <p>
     {{$ad->content}}
   </p>
-  <p><a href="/">Regresar</a></p>
+  <p><a href="/">Regresar</a> | <a href="{{route("ad_edit_path",$ad->id)}}">Editar</a> </p>
 @stop
