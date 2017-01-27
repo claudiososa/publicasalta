@@ -3,6 +3,8 @@
 namespace PublicaSalta\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use PublicaSalta\Ad;
 
 class AdsController extends Controller
@@ -25,6 +27,7 @@ class AdsController extends Controller
     public function create()
     {
         //
+        return view ("ads.create");
     }
 
     /**
@@ -35,7 +38,25 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+          "title" => "required",
+          "content" => "required",
+        ]);
+
+        if($validator->fails()){
+          return redirect()
+          ->route("ad_create_path")
+          ->withErrors($validator)
+          ->withInput();
+        }
+
+        $ad = new Ad;
+        $ad->title= $request->get("title");
+        $ad->content= $request->get("content");
+        $ad->user_id = Auth::id();
+        $ad->save();
+
+        return redirect()->route("ad_show_path",$ad->id);
     }
 
     /**
@@ -59,7 +80,8 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        return view ("ads.edit",["ad"=>$ad]);
     }
 
     /**
@@ -71,7 +93,12 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ad = Ad::findOrFail($id);
+        $ad->title= $request->get("title");
+        $ad->content= $request->get("content");
+        $ad->user_id = Auth::id();
+        $ad->save();
+        return redirect()->route("ad_show_path",$ad->id);
     }
 
     /**

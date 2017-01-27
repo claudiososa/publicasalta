@@ -11,13 +11,44 @@
 |
 */
 Route::group(["middleware" => "auth"],function(){
-  Route::get('/',"HomeController@index");
+  Route::get('/',[
+    "uses" =>"HomeController@index",
+    "as" => "inicio",
+    ]);
+
+  Route::get('ad/create',[
+      'uses' => 'AdsController@create',
+      'as' => 'ad_create_path',
+  ]
+  );
+
+  Route::post('ad/create',[
+      'uses' => 'AdsController@store',
+      'as' => 'ad_store_path',
+  ]
+  );
 
   Route::get('ad/{id}',[
       'uses' => 'AdsController@show',
       'as' => 'ad_show_path'
-  ]
-  );
+  ])->where("id","[0-9]+");
+
+  Route::get('ad/{id}/edit',[
+      'uses' => 'AdsController@edit',
+      'as' => 'ad_edit_path'
+  ])->where("id","[0-9]+");
+
+  Route::patch('ad/{id}/edit',[
+      'uses' => 'AdsController@update',
+      'as' => 'ad_patch_path'
+  ])->where("id","[0-9]+");
+
+  Route::delete('ad/{id}/edit',[
+      'uses' => 'AdsController@destroy',
+      'as' => 'ad_delete_path'
+  ])->where("id","[0-9]+");
+
+
 });
 
 Route::get('auth/login',[

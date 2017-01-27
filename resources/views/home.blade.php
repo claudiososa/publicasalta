@@ -2,6 +2,7 @@
 
 @section("content")
 <h1>Lista de Anuncios</h1>
+<a class="btn btn-primary" href="{{route("ad_create_path")}}">Crear Anuncio</a>
 <hr>
 @foreach ($ads as $ad)
   {{$ad->title}}
